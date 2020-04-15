@@ -20,6 +20,8 @@
 #' @param session_access_token Access token obtained during this session.
 #' @param start_date Filter for emails sent on or after this date.
 #' @param end_date Filter for emails sent on or before this date.
+#' @param date_type Select whether the date filters should be on the event
+#' date or the email sent date ("EVENT" or "SENT").
 #' @param event_types There are 18 different events. By default all event
 #' types are returned. This parameter takes XML arguments where you can
 #' override the default and specify all of the events you want. See the
@@ -60,8 +62,11 @@
 #' }
 
 
-get_all_contacts <- function(pod_number, session_access_token, start_date, end_date, event_types = "<ALL_EVENT_TYPES/>",
-                             export_format = 0, exclude_deleted = FALSE, optional_columns = TRUE, file_name_prefix = "", 
+get_all_contacts <- function(pod_number, session_access_token, start_date, 
+                             end_date, date_type = "EVENT", 
+                             event_types = "<ALL_EVENT_TYPES/>", 
+                             export_format = 0, exclude_deleted = FALSE, 
+                             optional_columns = TRUE, file_name_prefix = "", 
                              confirm_email = "") {
   
   # Reformat the dates
@@ -73,8 +78,14 @@ get_all_contacts <- function(pod_number, session_access_token, start_date, end_d
     <Envelope>
       <Body>
         <RawRecipientDataExport>",
-          "<SEND_DATE_START>", start_date2, "</SEND_DATE_START>",
-          "<SEND_DATE_END>", end_date2, "</SEND_DATE_END>",
+          ifelse(date_type == "EVENT", paste0(
+              "<EVENT_DATE_START>", start_date2, "</EVENT_DATE_START>",
+              "<EVENT_DATE_END>", end_date2, "</EVENT_DATE_END>"
+            ), paste0(
+              "<SEND_DATE_START>", start_date2, "</SEND_DATE_START>",
+              "<SEND_DATE_END>", end_date2, "</SEND_DATE_END>"
+            )
+          ),
           "<EXPORT_FORMAT>", export_format, "</EXPORT_FORMAT>",
           ifelse(file_name_prefix != "", paste0("<EXPORT_FILE_NAME>", file_name_prefix, "</EXPORT_FILE_NAME>"), ""),
           ifelse(confirm_email != "", paste0("<EMAIL>", confirm_email, "</EMAIL>"), ""),

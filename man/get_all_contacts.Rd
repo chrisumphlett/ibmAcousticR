@@ -9,6 +9,7 @@ get_all_contacts(
   session_access_token,
   start_date,
   end_date,
+  date_type = "EVENT",
   event_types = "<ALL_EVENT_TYPES/>",
   export_format = 0,
   exclude_deleted = FALSE,
@@ -27,11 +28,13 @@ engage1.silverpop.com.}
 
 \item{end_date}{Filter for emails sent on or before this date.}
 
+\item{date_type}{Select whether the date filters should be on the event
+date or the email sent date ("EVENT" or "SENT").}
+
 \item{event_types}{There are 18 different events. By default all event
 types are returned. This parameter takes XML arguments where you can
-override the default and specify all of the events you want, e.g.
-"<OPENS/><CLICKS/>" to get only opens and clicks. See the Acoustic
-documentation for the full list.}
+override the default and specify all of the events you want. See the
+Acoustic documentation for the full list.}
 
 \item{export_format}{Acoustic provides three delimeter file types:
 0 (CSV), 1 (PIPE), or 2 (TAB). CSV is the default used here.}
@@ -78,6 +81,8 @@ access_token <- acoustic_auth(org_client_id = "abc",
 org_client_secret = "xyz",
 my_refresh_token = "123")
 
-job_id <- get_all_contacts(pod_number, access_token)
+job_id <- get_all_contacts(pod_number, access_token,
+"2020-01-01", "2020-01-05", event_types = "<CLICKS/>",
+1, exclude_deleted = TRUE, optional_columns = TRUE)
 }
 }
