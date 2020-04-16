@@ -7,6 +7,12 @@
 #' https://developer.ibm.com/customer-engagement/tutorials/
 #' export-raw-contact-events/
 #'
+#' The date type is sent to EVENT by default. If you filter by the sent
+#' date you may not get all applicable events, as some events (a future
+#' click) will not yet have happened. If you do filter by SENT date and
+#' are incrementally updating your data you should plan to go back and
+#' retroactively update past dates.
+#' 
 #' Job results are available as exports in the Silverpop portal by
 #' going to Resources -> Data Jobs.
 #' 
