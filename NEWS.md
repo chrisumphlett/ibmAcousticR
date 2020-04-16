@@ -1,3 +1,7 @@
+# ibmAcousticR 0.1.1
+
+* Added option to choose between event and sent date for filtering for raw contact events.
+
 # ibmAcousticR 0.1.0
 
 * Tested and released to GitHub.
