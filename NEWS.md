@@ -1,12 +1,13 @@
-# ibmAcousticR 0.1.1.9000
-
 # ibmAcousticR 0.1.1
 
 * Added option to choose between event and sent date for filtering for raw contact events.
+* DESCRIPTION file minor edits per CRAN reviewer feedback.
+* Example for non-exported function removed per CRAN reviewer feedback.
 
 # ibmAcousticR 0.1.0
 
 * Tested and released to GitHub.
+* Initial submission to CRAN.
 
 # ibmAcousticR 0.0.0.9000
 

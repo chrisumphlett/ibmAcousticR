@@ -27,9 +27,4 @@ stored directly in your code. There are various methods and
 packages available that are more secure; this package does not
 require you to use any one in particular.
 }
-\examples{
-\dontrun{
-job_id <- get_job_id(request)
-}
-}
 \keyword{internal}

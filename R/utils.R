@@ -23,11 +23,6 @@
 #' @return A vector with the Job Id.
 #' 
 #' @keywords internal
-#' 
-#' @examples
-#' \dontrun{
-#' job_id <- get_job_id(request)
-#' }
 
 
 get_job_id <- function(request_obj) {

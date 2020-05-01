@@ -1,5 +1,5 @@
 Package: ibmAcousticR
-Title: Connect to Your IBM Acoustic Data with R!
+Title: Connect to Your IBM Acoustic Data with R
 Version: 0.1.1
 Authors@R: 
     person(given = "Chris",
@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "christopher.umphlett@gmail.com")
 Description: Authentication can be the most difficult part about
-  working with a new API. ibmAcousticR facilitates making a
+  working with a new API. 'ibmAcousticR' facilitates making a
   connection to the IBM Acoustic email campaign management API
   and executing various queries. The IBM Acoustic API 
   documentation is available at
@@ -21,4 +21,4 @@ Imports:
   httr (>= 1.4.1),
   XML (>= 3.99-0.3)
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
