@@ -49,12 +49,12 @@ get_job_id <- function(request_obj) {
 #' @keywords internal
 
 
-check_request_status <- function() {
-  if (request$status_code == 401) {
+check_request_status <- function(request_obj) {
+  if (request_obj$status_code == 401) {
     message(paste0("There was a 401 error. Do you need to refresh your access token?"))
     stop()
-  } else if (request$status_code != 200) {
-    message(paste0("There was an authentication error: ", request$status_code))
+  } else if (request_obj$status_code != 200) {
+    message(paste0("There was an authentication error: ", request_obj$status_code))
     stop()
   }
 } 

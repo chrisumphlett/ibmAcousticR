@@ -52,7 +52,7 @@ get_job_status <- function(pod_number, session_access_token, desired_job_id) {
                         body = xml_parameters,
                         encode = "json")
 
-  check_request_status()
+  check_request_status(request)
   
   # Extract and return the job status
   request_content <- httr::content(request, "text", encoding = "ISO-8859-1")

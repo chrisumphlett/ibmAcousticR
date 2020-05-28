@@ -114,7 +114,7 @@ get_all_contacts <- function(pod_number, session_access_token, start_date,
                         body = xml_parameters,
                         encode = "json")
   
-  check_request_status()
+  check_request_status(request)
   
   # Get and return the Job Id
   job_id <- get_job_id(request)
