@@ -51,19 +51,12 @@ acoustic_auth <- function(org_client_id, org_client_secret, my_refresh_token, po
              refresh_token = my_refresh_token)
   
   # Submit the request
-  request <- httr::POST(url = paste0("https://api", pod_number, ".ibmmarketingcloud.com/oauth/token"),
+  request <- httr::POST(url = paste0("https://api-campaign-us-", pod_number, ".goacoustic.com/oauth/token"),
                         httr::add_headers("Content-Type" = "application/x-www-form-urlencoded"),
                         body = body_parameters,
                         encode = "form")
   
-  # If the API request doesn't return succesfully, notify the user and exit the function
-  if (request$status_code == 401) {
-    print(paste0("There was a 401 error. Do you need to refresh your access token?"))
-    stop()
-  } else if (request$status_code != 200) {
-    print(paste0("There was an authentication error: ", request$status_code))
-    stop()
-  }
+  check_request_status()
   
   # Get and return the access_token
   request_content <- httr::content(request, "text", encoding = "ISO-8859-1")

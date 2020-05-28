@@ -46,20 +46,13 @@ get_job_status <- function(pod_number, session_access_token, desired_job_id) {
     ")
   
   # Submit the request
-  request <- httr::POST(url = paste0("https://api", pod_number, ".ibmmarketingcloud.com/XMLAPI"),
+  request <- httr::POST(url = paste0("https://api-campaign-us-", pod_number, ".goacoustic.com/XMLAPI"),
                         httr::add_headers("Content-Type" = "text/xml;charset=utf-8",
                                           "Authorization" = paste0("Bearer ", session_access_token)),
                         body = xml_parameters,
                         encode = "json")
 
-  # If the API request doesn't return succesfully, notify the user and exit the function
-  if (request$status_code == 401) {
-    print(paste0("There was a 401 error. Do you need to refresh your access token?"))
-          stop()
-  } else if (request$status_code != 200) {
-    print(paste0("There was an authentication error: ", request$status_code))
-    stop()
-  }
+  check_request_status()
   
   # Extract and return the job status
   request_content <- httr::content(request, "text", encoding = "ISO-8859-1")
