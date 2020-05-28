@@ -35,3 +35,27 @@ get_job_id <- function(request_obj) {
   print(paste0("Submit was successful, Job Id: ", job_id))
   return(job_id)
 }
+
+
+#' Check Request Status
+#' 
+#' This function is called by other functions that submit jobs to
+#' the Acoustic/Silverpop API. It checks the status code
+#' returned and tells the user if there was an error code and
+#' exits the function.
+#' 
+#' @return If status code is not 200, a message to console 
+#' 
+#' @keywords internal
+
+
+check_request_status <- function() {
+  if (request$status_code == 401) {
+    message(paste0("There was a 401 error. Do you need to refresh your access token?"))
+    stop()
+  } else if (request$status_code != 200) {
+    message(paste0("There was an authentication error: ", request$status_code))
+    stop()
+  }
+} 
+
