@@ -1,5 +1,5 @@
 Package: ibmAcousticR
-Title: Connect to Your IBM Acoustic Data with R
+Title: Connect to Your IBM 'Acoustic' Data with 'R'
 Version: 0.1.1
 Authors@R: 
     person(given = "Chris",
@@ -8,8 +8,8 @@ Authors@R:
            email = "christopher.umphlett@gmail.com")
 Description: Authentication can be the most difficult part about
   working with a new API. 'ibmAcousticR' facilitates making a
-  connection to the IBM Acoustic email campaign management API
-  and executing various queries. The IBM Acoustic API 
+  connection to the IBM 'Acoustic' email campaign management API
+  and executing various queries. The IBM 'Acoustic' API 
   documentation is available at
   <https://developer.ibm.com/customer-engagement/docs/>.
 License: CC0
