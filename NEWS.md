@@ -1,3 +1,8 @@
+# ibmAcousticR 0.1.2
+
+* Updated URLs as IBM announced it will be deprecating the old URLs on 2020-06-30.
+* Minor edits per CRAN reviewer.
+
 # ibmAcousticR 0.1.1
 
 * Added option to choose between event and sent date for filtering for raw contact events.
