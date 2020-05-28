@@ -32,7 +32,7 @@ get_job_id <- function(request_obj) {
   
   # Return the job id
   job_id <- XML::xpathSApply(request_xml, "//Envelope/Body/RESULT/MAILING/JOB_ID", XML::xmlValue)
-  print(paste0("Submit was successful, Job Id: ", job_id))
+  message(paste0("Submit was successful, Job Id: ", job_id))
   return(job_id)
 }
 
