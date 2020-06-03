@@ -1,3 +1,8 @@
+# ibmAcousticR 0.1.2.9000
+
+* Working on get_programs() to return a data frame with all programs created between specific dates.
+* Will be Adding program id as value in the get contact events results.
+
 # ibmAcousticR 0.1.2
 
 * Updated URLs as IBM announced it will be deprecating the old URLs on 2020-06-30.
