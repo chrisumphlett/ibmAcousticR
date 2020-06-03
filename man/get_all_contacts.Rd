@@ -44,9 +44,10 @@ deleted, can be TRUE/FALSE. Per Acoustic, "Inclusion of this
 element can greatly decrease the time to generate the metrics file and
 is useful whenever metrics for deleted contacts are not required."}
 
-\item{optional_columns}{Do you want to include four optional columns
+\item{optional_columns}{Do you want to include six optional columns
 in the results, can be TRUE/FALSE. These columns are the mailing name,
-mailing subject, the from email address and the from email name.}
+mailing subject, from email address, from email name, CRM campaign Id,
+and program Id.}
 
 \item{file_name_prefix}{Optional argument that should be used if you
 want to add a particular prefix to the file that you will download
