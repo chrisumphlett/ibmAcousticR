@@ -1,6 +1,5 @@
 # ibmAcousticR
-Connect to Your IBM Acoustic Data With R!
-
+Connect to Your 'IBM Acoustic' Data!
 
 ## Purpose
 
@@ -10,6 +9,8 @@ ibmAcousticR facilitates making a connection to the IBM Acoustic email campaign 
 ## Installation
 
 The development version can be installed from GitHub: `devtools::install_github("chrisumphlett/ibmAcousticR")` .
+
+The package is available on CRAN: `install.packages("ibmAcousticR")`.
 
 
 ## Usage
@@ -30,3 +31,7 @@ Currently the package has one function for obtaining data, `get_all_contacts()` 
 
 > job_id <- get_all_contacts(1, access_token)
 > get_job_status(1, access_token, "123456789")
+
+You can also get a list of programs which can be joined to the email events using the `program_id` with `get_programs()`:
+
+> get_programs(1, access_token, "2020-01-01", "2020-05-31")
