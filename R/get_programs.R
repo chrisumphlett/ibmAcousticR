@@ -28,7 +28,6 @@
 #' org_client_secret = "xyz",
 #' my_refresh_token = "123")
 #'
-#' job_id <- get_all_contacts(access_token)
 #' get_programs(1, access_token, "2020-01-01", "2020-05-31")
 #' }
 
