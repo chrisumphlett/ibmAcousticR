@@ -4,3 +4,4 @@
 ^cran-comments.md
 ^news.md
 ^CRAN-RELEASE$
+^get_database_list.R
