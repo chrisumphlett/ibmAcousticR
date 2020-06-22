@@ -68,7 +68,7 @@ https://developer.ibm.com/customer-engagement/tutorials/
 export-raw-contact-events/
 }
 \details{
-The date type is sent to EVENT by default. If you filter by the sent
+The date type is set to EVENT by default. If you filter by the sent
 date you may not get all applicable events, as some events (a future
 click) will not yet have happened. If you do filter by SENT date and
 are incrementally updating your data you should plan to go back and
