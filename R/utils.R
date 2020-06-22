@@ -14,6 +14,7 @@
 #' 
 #' @param request_obj Name of the object returned from API call,
 #' should always be "request".
+#' @param path XML path to the job id.
 #' 
 #' @importFrom httr "content"
 #' @importFrom XML "xmlParse"
@@ -25,13 +26,13 @@
 #' @keywords internal
 
 
-get_job_id <- function(request_obj) {
+get_job_id <- function(request_obj, path) {
   # Extract the XML from the request results
   request_content <- httr::content(request_obj, "text", encoding = "ISO-8859-1")
   request_xml <- XML::xmlParse(request_content)
   
   # Return the job id
-  job_id <- XML::xpathSApply(request_xml, "//Envelope/Body/RESULT/MAILING/JOB_ID", XML::xmlValue)
+  job_id <- XML::xpathSApply(request_xml, path, XML::xmlValue)
   message(paste0("Submit was successful, Job Id: ", job_id))
   return(job_id)
 }

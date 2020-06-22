@@ -21,7 +21,7 @@ engage1.silverpop.com.}
 
 \item{session_access_token}{Access token obtained during this session.}
 
-\item{list_id}{Acoustic id for the database or contact list.}
+\item{list_id}{Acoustic id for the database or contact list (string).}
 
 \item{start_date}{Filter for emails sent on or after this date.}
 
