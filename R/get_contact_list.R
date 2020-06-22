@@ -1,17 +1,12 @@
 #' Get Export of a Database or contact List
 #' 
-#' This function submits a job to Acoustic that exports all email contact
-#' events. Various criteria are available to filter the export. Some,
-#' but not all, of these have been built into the parameters of this 
-#' function. Reading the IBM Acoustic documentation is useful:
+#' This function submits a job to Acoustic that exports a particular
+#' database or contact list based on the list id.  Various criteria 
+#' are available to filter the export. Some, but not all, of these
+#' have been built into the parameters of this function. Reading the 
+#' IBM Acoustic documentation is useful:
 #' https://developer.ibm.com/customer-engagement/tutorials/
-#' export-raw-contact-events/
-#'
-#' The date type is sent to EVENT by default. If you filter by the sent
-#' date you may not get all applicable events, as some events (a future
-#' click) will not yet have happened. If you do filter by SENT date and
-#' are incrementally updating your data you should plan to go back and
-#' retroactively update past dates.
+#' export-from-a-database/
 #' 
 #' Job results are available as exports in the Silverpop portal by
 #' going to Resources -> Data Jobs.
@@ -24,7 +19,7 @@
 #' @param pod_number Pod number is the number in the URL, e.g. 
 #' engage1.silverpop.com.
 #' @param session_access_token Access token obtained during this session.
-#' @param list_id Acoustic id for the database or contact list.
+#' @param list_id Acoustic id for the database or contact list (string).
 #' @param start_date Filter for emails sent on or after this date.
 #' @param end_date Filter for emails sent on or before this date.
 #' @param export_format Acoustic provides three delimeter file types: 
@@ -59,8 +54,8 @@ get_contact_list <- function(pod_number, session_access_token, list_id, start_da
                              export_format = "CSV", file_name_prefix = "", confirm_email = "") {
   
   # Reformat the dates
-  start_date2 <- as.character(format(as.Date(start_date), "%m/%d/%Y"))
-  end_date2 <- as.character(format(as.Date(end_date), "%m/%d/%Y"))
+  start_date2 <- as.character(format(as.Date(start_date), "%m/%d/%Y %H:%M:%S"))
+  end_date2 <- as.character(format(as.Date(end_date), "%m/%d/%Y %H:%M:%S"))
     
   # Build the XML request
   xml_parameters <- paste0("
@@ -79,9 +74,8 @@ get_contact_list <- function(pod_number, session_access_token, list_id, start_da
           <EXPORT_TYPE>ALL</EXPORT_TYPE>",
         "</ExportList>
       </Body>
-    </Envelope>
-    ")
-  
+    </Envelope>")
+
   # Submit the request
   request <- httr::POST(url = paste0("https://api-campaign-us-", pod_number, ".goacoustic.com/XMLAPI"),
                         httr::add_headers("Content-Type" = "text/xml;charset=utf-8",
@@ -90,9 +84,9 @@ get_contact_list <- function(pod_number, session_access_token, list_id, start_da
                         encode = "json")
   
   check_request_status(request)
-  
+
   # Get and return the Job Id
-  job_id <- get_job_id(request)
+  job_id <- get_job_id(request, "//Envelope/Body/RESULT/JOB_ID")
   return(job_id)
   
 }
