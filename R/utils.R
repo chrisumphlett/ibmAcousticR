@@ -60,3 +60,39 @@ check_request_status <- function(request_obj) {
   }
 } 
 
+
+#' Stop Function Quietly
+#' 
+#' Quit a function execution without printing error messages. The
+#' idea came from a Stack Overflow answer 
+#' (https://stackoverflow.com/questions/14469522/stop-an-r-program-without-error). 
+#' 
+#' @return Exits a function.
+#' 
+#' @keywords internal
+
+
+stop_quietly <- function() {
+  opt <- options(show.error.messages = FALSE)
+  on.exit(options(opt))
+  stop()
+}
+
+
+#' Detect Invalid XML Request
+#' 
+#' Searches the results content for the phrase "Invalid XML Request". If it
+#' is found it gives the user a message and exits the function.
+#' 
+#' @importFrom httr "content"
+#' 
+#' @return Message to the console.
+#' 
+#' @keywords internal
+
+check_for_invalid_xml <- function(request_obj) {
+  if(grep("Invalid XML Request", httr::content(request_obj, "text", encoding = "ISO-8859-1")) >= 1) {
+    message("Acoustic returned message \"Invalid XML Request\". Check your request parameters.")
+    stop_quietly()
+  }
+}

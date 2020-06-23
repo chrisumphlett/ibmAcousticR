@@ -60,7 +60,7 @@ get_programs <- function(pod_number, session_access_token, start_date, end_date)
                         encode = "json")
   
   check_request_status(request)
-  
+  check_for_invalid_xml(request)
   
   # Extract and return the job status
   request_content <- httr::content(request, "text", encoding = "ISO-8859-1")

@@ -118,6 +118,7 @@ get_all_contacts <- function(pod_number, session_access_token, start_date,
                         encode = "json")
   
   check_request_status(request)
+  check_for_invalid_xml(request)
   
   # Get and return the Job Id
   job_id <- get_job_id(request, "//Envelope/Body/RESULT/MAILING/JOB_ID")
