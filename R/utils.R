@@ -91,7 +91,7 @@ stop_quietly <- function() {
 #' @keywords internal
 
 check_for_invalid_xml <- function(request_obj) {
-  if(grep("Invalid XML Request", httr::content(request_obj, "text", encoding = "ISO-8859-1")) >= 1) {
+  if(length(grep("Invalid XML Request", httr::content(request_obj, "text", encoding = "ISO-8859-1"))) >= 1) {
     message("Acoustic returned message \"Invalid XML Request\". Check your request parameters.")
     stop_quietly()
   }
