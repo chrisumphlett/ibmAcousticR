@@ -57,6 +57,7 @@ acoustic_auth <- function(org_client_id, org_client_secret, my_refresh_token, po
                         encode = "form")
   
   check_request_status(request)
+  check_for_faulty_xml(request)
   
   # Get and return the access_token
   request_content <- httr::content(request, "text", encoding = "ISO-8859-1")

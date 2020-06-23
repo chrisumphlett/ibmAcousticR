@@ -79,9 +79,9 @@ stop_quietly <- function() {
 }
 
 
-#' Detect Invalid XML Request
+#' Detect Faulty XML Request
 #' 
-#' Searches the results content for the phrase "Invalid XML Request". If it
+#' Searches the results content for the tag "<FaultString>". If it
 #' is found it gives the user a message and exits the function.
 #' 
 #' @importFrom httr "content"
@@ -90,9 +90,9 @@ stop_quietly <- function() {
 #' 
 #' @keywords internal
 
-check_for_invalid_xml <- function(request_obj) {
-  if(length(grep("Invalid XML Request", httr::content(request_obj, "text", encoding = "ISO-8859-1"))) >= 1) {
-    message("Acoustic returned message \"Invalid XML Request\". Check your request parameters.")
+check_for_faulty_xml <- function(request_obj) {
+  if(length(grep("<FaultString>", httr::content(request_obj, "text", encoding = "ISO-8859-1"))) >= 1) {
+    message("Faulty XML request. Full result text:")
     stop_quietly()
   }
 }
