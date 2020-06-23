@@ -27,11 +27,11 @@ The access token is then used to provide the authentication when you submit call
 
 Some API calls will return data back to your R session; others will submit a job that will allow you to download your file from the Silverpop portal (you must be able to log in). You can get the report within the portal from Resources -> Data Jobs.
 
-Currently the package has one function for obtaining data, `get_all_contacts()` . This submits a job to obtain all events for all emails that were sent. See the function documentation for more information. A simple example of using it is below:
+Currently the package has two functions for obtaining data, `get_all_contacts()` and `get_contact_list()`. Each submits a job to be retrieved from the Acoustic/Silverpop portal. See the function documentation for more information. A simple example of using it is below:
 
 > job_id <- get_all_contacts(1, access_token)
 > get_job_status(1, access_token, "123456789")
 
-You can also get a list of programs which can be joined to the email events using the `program_id` with `get_programs()`:
+You can get a list of programs which can be joined to the email events using the `program_id` with `get_programs()`:
 
 > get_programs(1, access_token, "2020-01-01", "2020-05-31")
