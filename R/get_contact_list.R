@@ -52,7 +52,7 @@ get_contact_list <- function(pod_number, session_access_token, list_id, start_da
   
   # Reformat the dates
   start_date2 <- as.character(format(as.Date(start_date), "%m/%d/%Y %H:%M:%S"))
-  end_date2 <- as.character(format(as.Date(end_date), "%m/%d/%Y %H:%M:%S"))
+  end_date2 <- as.character(format(as.Date(end_date) + 1, "%m/%d/%Y %H:%M:%S"))
     
   # Build the XML request
   xml_parameters <- paste0("

@@ -78,7 +78,7 @@ get_all_contacts <- function(pod_number, session_access_token, start_date,
   
   # Reformat the dates
   start_date2 <- as.character(format(as.Date(start_date), "%m/%d/%Y"))
-  end_date2 <- as.character(format(as.Date(end_date), "%m/%d/%Y"))
+  end_date2 <- as.character(format(as.Date(end_date) + 1, "%m/%d/%Y"))
   
   # Build the XML request
   xml_parameters <- paste0("
