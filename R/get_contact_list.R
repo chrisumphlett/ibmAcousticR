@@ -24,9 +24,6 @@
 #' @param end_date Filter for emails sent on or before this date.
 #' @param export_format Acoustic provides three delimeter file types: 
 #' CSV, PIPE, TAB. CSV is the default used here.
-#' @param file_name_prefix Optional argument that should be used if you 
-#' want to add a particular prefix to the file that you will download
-#' from your portal.
 #' @param confirm_email Optional argument to specify an email address
 #' where IBM will let you know when the job has completed. 
 #' 
@@ -46,12 +43,12 @@
 #' my_refresh_token = "123")
 #' 
 #' job_id <- get_contact_list(pod_number, access_token, list_id,
-#' "2020-01-01", "2020-01-05", event_types = "<CLICKS/>", "PIPE")
+#' "2020-01-01", "2020-01-05", "PIPE")
 #' }
 
 
 get_contact_list <- function(pod_number, session_access_token, list_id, start_date, end_date,
-                             export_format = "CSV", file_name_prefix = "", confirm_email = "") {
+                             export_format = "CSV", confirm_email = "") {
   
   # Reformat the dates
   start_date2 <- as.character(format(as.Date(start_date), "%m/%d/%Y %H:%M:%S"))
@@ -66,7 +63,6 @@ get_contact_list <- function(pod_number, session_access_token, list_id, start_da
           "<DATE_END>", end_date2, "</DATE_END>",
           "<EXPORT_FORMAT>", export_format, "</EXPORT_FORMAT>",
           "<LIST_ID>", list_id, "</LIST_ID>",
-          ifelse(file_name_prefix != "", paste0("<EXPORT_FILE_NAME>", file_name_prefix, "</EXPORT_FILE_NAME>"), ""),
           ifelse(confirm_email != "", paste0("<EMAIL>", confirm_email, "</EMAIL>"), ""),
           "<ADD_TO_STORED_FILES/>
           <INCLUDE_LEAD_SOURCE/>

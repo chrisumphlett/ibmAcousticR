@@ -11,7 +11,6 @@ get_contact_list(
   start_date,
   end_date,
   export_format = "CSV",
-  file_name_prefix = "",
   confirm_email = ""
 )
 }
@@ -29,10 +28,6 @@ engage1.silverpop.com.}
 
 \item{export_format}{Acoustic provides three delimeter file types:
 CSV, PIPE, TAB. CSV is the default used here.}
-
-\item{file_name_prefix}{Optional argument that should be used if you
-want to add a particular prefix to the file that you will download
-from your portal.}
 
 \item{confirm_email}{Optional argument to specify an email address
 where IBM will let you know when the job has completed.}
@@ -65,6 +60,6 @@ org_client_secret = "xyz",
 my_refresh_token = "123")
 
 job_id <- get_contact_list(pod_number, access_token, list_id,
-"2020-01-01", "2020-01-05", event_types = "<CLICKS/>", "PIPE")
+"2020-01-01", "2020-01-05", "PIPE")
 }
 }
