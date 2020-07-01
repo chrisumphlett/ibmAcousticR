@@ -51,7 +51,7 @@
 
 get_contact_list <- function(pod_number, session_access_token, list_id, start_date, end_date,
                              export_format = "CSV", move_to_ftp = FALSE, confirm_email = "") {
-  message("test")
+
   # Reformat the dates
   start_date2 <- as.character(format(as.Date(start_date), "%m/%d/%Y %H:%M:%S"))
   end_date2 <- as.character(format(as.Date(end_date) + 1, "%m/%d/%Y %H:%M:%S"))
