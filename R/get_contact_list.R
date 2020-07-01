@@ -22,9 +22,9 @@
 #' @param list_id Acoustic id for the database or contact list (string).
 #' @param start_date Filter for emails sent on or after this date.
 #' @param end_date Filter for emails sent on or before this date.
-#' @param export_format Acoustic provides three delimeter file types: 
+#' @param export_format Acoustic provides three delimiter file types: 
 #' CSV, PIPE, TAB. CSV is the default used here.
-#' @param move_to_ftp If TRUE (default) will send files to SFTP server
+#' @param move_to_ftp If TRUE (default is FALSE) will send files to SFTP server
 #' instead of being able to download manually from the portal.
 #' @param confirm_email Optional argument to specify an email address
 #' where IBM will let you know when the job has completed. 
@@ -65,7 +65,7 @@ get_contact_list <- function(pod_number, session_access_token, list_id, start_da
           "<DATE_END>", end_date2, "</DATE_END>",
           "<EXPORT_FORMAT>", export_format, "</EXPORT_FORMAT>",
           "<LIST_ID>", list_id, "</LIST_ID>",
-          ifelse(move_to_ftp == TRUE, "", "<ADD_TO_STORED_FILES/>"),
+          ifelse(move_to_ftp == FALSE, "<ADD_TO_STORED_FILES/>", ""),
           ifelse(confirm_email != "", paste0("<EMAIL>", confirm_email, "</EMAIL>"), ""),
           "<INCLUDE_LEAD_SOURCE/>
           <INCLUDE_RECIPIENT_ID/>

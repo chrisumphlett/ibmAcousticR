@@ -1,7 +1,6 @@
-# ibmAcousticR 0.2.0.9000
-* Planning to allow user to choose between submitting jobs to be manually downloaded from the Acoustic/Silverpop portal or sent to their FTP server. I am currently working out how to set up and utilize the FTP server for myself in order to be able to fully test this and write good documentation on it.
-* This is the final item in our current plans.
-* Changed end date parameter in `get_contact_list()`.
+# ibmAcousticR 0.2.0
+* Users may choose between submitting jobs to be manually downloaded from the Acoustic/Silverpop portal or sent to the FTP server.
+* Changed end date parameter in `get_contact_list()` to make it inclusive of that date.
 
 # ibmAcousticR 0.1.4
 * `get_contact_list()` submits a job to get an export of a contact list or database.

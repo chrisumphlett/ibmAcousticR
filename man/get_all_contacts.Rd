@@ -37,11 +37,11 @@ types are returned. This parameter takes XML arguments where you can
 override the default and specify all of the events you want. See the
 Acoustic documentation for the full list.}
 
-\item{export_format}{Acoustic provides three delimeter file types:
+\item{export_format}{Acoustic provides three delimiter file types:
 0 (CSV), 1 (PIPE), or 2 (TAB). CSV is the default used here.}
 
-\item{move_to_ftp}{If TRUE (default) will send files to SFTP server
-instead of being able to download manually from the portal.}
+\item{move_to_ftp}{If TRUE (default is FALSE) will send files to SFTP
+server instead of being able to download manually from the portal.}
 
 \item{exclude_deleted}{Do you want to exclude contacts that have been
 deleted, can be TRUE/FALSE. Per Acoustic, "Inclusion of this

@@ -27,10 +27,10 @@ engage1.silverpop.com.}
 
 \item{end_date}{Filter for emails sent on or before this date.}
 
-\item{export_format}{Acoustic provides three delimeter file types:
+\item{export_format}{Acoustic provides three delimiter file types:
 CSV, PIPE, TAB. CSV is the default used here.}
 
-\item{move_to_ftp}{If TRUE (default) will send files to SFTP server
+\item{move_to_ftp}{If TRUE (default is FALSE) will send files to SFTP server
 instead of being able to download manually from the portal.}
 
 \item{confirm_email}{Optional argument to specify an email address

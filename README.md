@@ -25,7 +25,7 @@ If you are able to authenticate you will obtain an access token. Access tokens a
 
 The access token is then used to provide the authentication when you submit calls to the API to obtain data. You will also need to know your "pod number" (the number that appears in the URL of your Silverpop portal). 
 
-Some API calls will return data back to your R session; others will submit a job that will allow you to download your file from the Silverpop portal (you must be able to log in). You can get the report within the portal from Resources -> Data Jobs.
+Some API calls will return data back to your R session; others will submit a job that will allow you to download your file from the Silverpop portal (you must be able to log in). You can get the report within the portal from Resources -> Data Jobs. You may optionally have these sent to an SFTP server provided by Acoustic.
 
 Currently the package has two functions for obtaining data, `get_all_contacts()` and `get_contact_list()`. Each submits a job to be retrieved from the Acoustic/Silverpop portal. See the function documentation for more information. A simple example of using it is below:
 
