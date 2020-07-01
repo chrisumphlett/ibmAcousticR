@@ -24,6 +24,8 @@
 #' @param end_date Filter for emails sent on or before this date.
 #' @param export_format Acoustic provides three delimeter file types: 
 #' CSV, PIPE, TAB. CSV is the default used here.
+#' @param move_to_ftp If TRUE (default) will send files to SFTP server
+#' instead of being able to download manually from the portal.
 #' @param confirm_email Optional argument to specify an email address
 #' where IBM will let you know when the job has completed. 
 #' 
@@ -48,8 +50,8 @@
 
 
 get_contact_list <- function(pod_number, session_access_token, list_id, start_date, end_date,
-                             export_format = "CSV", confirm_email = "") {
-  
+                             export_format = "CSV", move_to_ftp = FALSE, confirm_email = "") {
+  message("test")
   # Reformat the dates
   start_date2 <- as.character(format(as.Date(start_date), "%m/%d/%Y %H:%M:%S"))
   end_date2 <- as.character(format(as.Date(end_date) + 1, "%m/%d/%Y %H:%M:%S"))
@@ -63,9 +65,9 @@ get_contact_list <- function(pod_number, session_access_token, list_id, start_da
           "<DATE_END>", end_date2, "</DATE_END>",
           "<EXPORT_FORMAT>", export_format, "</EXPORT_FORMAT>",
           "<LIST_ID>", list_id, "</LIST_ID>",
+          ifelse(move_to_ftp == TRUE, "", "<ADD_TO_STORED_FILES/>"),
           ifelse(confirm_email != "", paste0("<EMAIL>", confirm_email, "</EMAIL>"), ""),
-          "<ADD_TO_STORED_FILES/>
-          <INCLUDE_LEAD_SOURCE/>
+          "<INCLUDE_LEAD_SOURCE/>
           <INCLUDE_RECIPIENT_ID/>
           <EXPORT_TYPE>ALL</EXPORT_TYPE>",
         "</ExportList>

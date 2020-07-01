@@ -12,6 +12,7 @@ get_all_contacts(
   date_type = "EVENT",
   event_types = "<ALL_EVENT_TYPES/>",
   export_format = 0,
+  move_to_ftp = FALSE,
   exclude_deleted = FALSE,
   optional_columns = TRUE,
   file_name_prefix = "",
@@ -38,6 +39,9 @@ Acoustic documentation for the full list.}
 
 \item{export_format}{Acoustic provides three delimeter file types:
 0 (CSV), 1 (PIPE), or 2 (TAB). CSV is the default used here.}
+
+\item{move_to_ftp}{If TRUE (default) will send files to SFTP server
+instead of being able to download manually from the portal.}
 
 \item{exclude_deleted}{Do you want to exclude contacts that have been
 deleted, can be TRUE/FALSE. Per Acoustic, "Inclusion of this

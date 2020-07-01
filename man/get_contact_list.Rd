@@ -11,6 +11,7 @@ get_contact_list(
   start_date,
   end_date,
   export_format = "CSV",
+  move_to_ftp = FALSE,
   confirm_email = ""
 )
 }
@@ -28,6 +29,9 @@ engage1.silverpop.com.}
 
 \item{export_format}{Acoustic provides three delimeter file types:
 CSV, PIPE, TAB. CSV is the default used here.}
+
+\item{move_to_ftp}{If TRUE (default) will send files to SFTP server
+instead of being able to download manually from the portal.}
 
 \item{confirm_email}{Optional argument to specify an email address
 where IBM will let you know when the job has completed.}
