@@ -96,7 +96,7 @@ get_all_contacts <- function(pod_number, session_access_token, start_date,
             )
           ),
           "<EXPORT_FORMAT>", export_format, "</EXPORT_FORMAT>",
-          ifelse(move_to_ftp == TRUE, paste0("<MOVE_TO_FTP/>"), ""),
+          ifelse(move_to_ftp == FALSE, "","<MOVE_TO_FTP/>"),
           ifelse(file_name_prefix != "", paste0("<EXPORT_FILE_NAME>", file_name_prefix, "</EXPORT_FILE_NAME>"), ""),
           ifelse(confirm_email != "", paste0("<EMAIL>", confirm_email, "</EMAIL>"), ""),
           event_types,
