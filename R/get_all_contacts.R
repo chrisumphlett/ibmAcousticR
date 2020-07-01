@@ -32,10 +32,10 @@
 #' types are returned. This parameter takes XML arguments where you can
 #' override the default and specify all of the events you want. See the
 #' Acoustic documentation for the full list.
-#' @param export_format Acoustic provides three delimeter file types: 
+#' @param export_format Acoustic provides three delimiter file types: 
 #' 0 (CSV), 1 (PIPE), or 2 (TAB). CSV is the default used here.
-#' @param move_to_ftp If TRUE (default) will send files to SFTP server
-#' instead of being able to download manually from the portal.
+#' @param move_to_ftp If TRUE (default is FALSE) will send files to SFTP 
+#' server instead of being able to download manually from the portal.
 #' @param exclude_deleted Do you want to exclude contacts that have been
 #' deleted, can be TRUE/FALSE. Per Acoustic, "Inclusion of this 
 #' element can greatly decrease the time to generate the metrics file and 
@@ -96,7 +96,7 @@ get_all_contacts <- function(pod_number, session_access_token, start_date,
             )
           ),
           "<EXPORT_FORMAT>", export_format, "</EXPORT_FORMAT>",
-          ifelse(move_to_ftp == TRUE, "<MOVE_TO_FTP/>", ""),
+          ifelse(move_to_ftp == TRUE, paste0("<MOVE_TO_FTP/>"), ""),
           ifelse(file_name_prefix != "", paste0("<EXPORT_FILE_NAME>", file_name_prefix, "</EXPORT_FILE_NAME>"), ""),
           ifelse(confirm_email != "", paste0("<EMAIL>", confirm_email, "</EMAIL>"), ""),
           event_types,
