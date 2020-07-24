@@ -1,3 +1,7 @@
+# ibmAcousticR 0.2.0.9000
+* Added a RETRY() to safely retry an API request certain number of times before returning a error code. 
+* Made minor edits to the DESCRIPTION file by adding a contributor.
+
 # ibmAcousticR 0.2.0
 * Users may choose between submitting jobs to be manually downloaded from the Acoustic/Silverpop portal or sent to the FTP server.
 * Changed end date parameter in `get_contact_list()` to make it inclusive of that date.
