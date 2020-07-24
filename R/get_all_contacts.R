@@ -51,6 +51,7 @@
 #' where IBM will let you know when the job has completed. 
 #' 
 #' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "RETRY
 #' @importFrom httr "POST"
 #' @importFrom httr "content"
 #' @importFrom httr "add_headers"
@@ -113,12 +114,18 @@ get_all_contacts <- function(pod_number, session_access_token, start_date,
     </Envelope>
     ")
   
+  terminal_codes <- list(c("400","401","403","404"))
   # Submit the request
-  request <- httr::POST(url = paste0("https://api-campaign-us-", pod_number, ".goacoustic.com/XMLAPI"),
+  request <- httr::RETRY("POST",
+                        url = paste0("https://api-campaign-us-", pod_number, ".goacoustic.com/XMLAPI"),
                         httr::add_headers("Content-Type" = "text/xml;charset=utf-8",
                                           "Authorization" = paste0("Bearer ", session_access_token)),
                         body = xml_parameters,
-                        encode = "json")
+                        encode = "json",
+                        times = 4,
+                        pause_min =10,
+                        terminate_on = terminal_codes,
+                        pause_cap = 5)
   
   check_request_status(request)
   check_for_faulty_xml(request)
