@@ -51,7 +51,7 @@
 #' where IBM will let you know when the job has completed. 
 #' 
 #' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "RETRY
+#' @importFrom httr "RETRY"
 #' @importFrom httr "POST"
 #' @importFrom httr "content"
 #' @importFrom httr "add_headers"
@@ -123,7 +123,7 @@ get_all_contacts <- function(pod_number, session_access_token, start_date,
                         body = xml_parameters,
                         encode = "json",
                         times = 4,
-                        pause_min =10,
+                        pause_min = 10,
                         terminate_on = terminal_codes,
                         pause_cap = 5)
   
