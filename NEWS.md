@@ -1,4 +1,4 @@
-# ibmAcousticR 0.2.0.9000
+# ibmAcousticR 0.2.1
 * Added a RETRY() to safely retry an API request certain number of times before returning a error code. 
 * Made minor edits to the DESCRIPTION file by adding a contributor.
 

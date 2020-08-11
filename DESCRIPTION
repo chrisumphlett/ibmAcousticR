@@ -1,6 +1,6 @@
 Package: ibmAcousticR
 Title: Connect to Your 'IBM Acoustic' Data
-Version: 0.2.0.9000
+Version: 0.2.1
 Authors@R: 
     c(person(given = "Chris",
            family = "Umphlett",

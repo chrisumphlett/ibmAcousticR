@@ -30,7 +30,7 @@
 #' where IBM will let you know when the job has completed. 
 #' 
 #' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "RETRY
+#' @importFrom httr "RETRY"
 #' @importFrom httr "POST"
 #' @importFrom httr "content"
 #' @importFrom httr "add_headers"
