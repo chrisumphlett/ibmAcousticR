@@ -75,7 +75,6 @@ get_contact_list <- function(pod_number, session_access_token, list_id, start_da
       </Body>
     </Envelope>")
 
-  terminal_codes <- list(c("400","401","403","404"))
   # Submit the request
   request <- httr:: RETRY("POST",
                         url = paste0("https://api-campaign-us-", pod_number, ".goacoustic.com/XMLAPI"),
@@ -85,7 +84,8 @@ get_contact_list <- function(pod_number, session_access_token, list_id, start_da
                         encode = "json",
                         times = 4,
                         pause_min = 10,
-                        terminate_on = terminal_codes,
+                        terminate_on = NULL,
+                        terminate_on_success = TRUE,
                         pause_cap = 5)
   
   check_request_status(request)
