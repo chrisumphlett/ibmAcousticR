@@ -1,15 +1,14 @@
-## Corrected submission
+## Release summary
 
-* This submission includes corrections to the DESCRIPTION file. I added '' around not only the package name but the software name in both the title and description fields.
-* Subsequent to my original submission IBM announced that it is changing the API URL. I have updated the URL and incremented to a new minor version.
-* Per CRAN reviewer I also changed print() to message() throughout the package.
-* From my original submission: I believe everything should be in order. There is no vignette because I do not believe it could be created without my specific API credentials included. The examples and README both demonstrate how the package would be used by someone who is a customer for this service and has the proper authentication credentials.
-  
+* This is a minor release that added some new functions and made some back end improvements.
+* New API endpoints can be accessed with the `get_programs()` and `get_contact_list()` functions.
+* Better API request error handling functions.
+* Enhancements to the `get_programs()` function.
+
 ## Test environments
 
-* Developed on and tested with Windows 10 and R 3.6.
+* Developed on and tested with Windows 10 and R 4.0.
 * Tested on R-devel with devtools::check_win_devel().
-* Tested on R-release with devtools::check_win_release().
 * Testing against multiple Linux platforms with devtools::check_rhub().
 
 ## R CMD check results
