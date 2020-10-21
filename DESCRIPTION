@@ -20,10 +20,10 @@ Description: Authentication can be the most difficult part about
 License: CC0
 Encoding: UTF-8
 LazyData: true
-Depends: R (>= 3.6.0)
+Depends: R (>= 4.0.0)
 Imports:
-  jsonlite (>= 1.6.1),
+  jsonlite (>= 1.7.0),
   httr (>= 1.4.1),
-  XML (>= 3.99-0.3)
+  XML (>= 3.99-0.5)
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1

@@ -9,7 +9,7 @@
 
 * Developed on and tested with Windows 10 and R 4.0.
 * Tested on R-devel with devtools::check_win_devel().
-* Testing against multiple Linux platforms with devtools::check_rhub().
+* Testing against multiple Linux platforms with rhub::check().
 
 ## R CMD check results
 
