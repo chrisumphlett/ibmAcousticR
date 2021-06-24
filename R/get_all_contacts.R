@@ -62,16 +62,19 @@
 #'
 #' @examples
 #' \dontrun{
-#' access_token <- acoustic_auth(org_client_id = "abc",
-#' org_client_secret = "xyz",
-#' my_refresh_token = "123")
+#' access_token <- acoustic_auth(
+#'   org_client_id = "abc",
+#'   org_client_secret = "xyz",
+#'   my_refresh_token = "123"
+#' )
 #'
 #' job_id <- get_all_contacts(pod_number, access_token,
-#' "2020-01-01", "2020-01-05", event_types = "<CLICKS/>",
-#' 1, exclude_deleted = TRUE, optional_columns = TRUE)
+#'   "2020-01-01", "2020-01-05",
+#'   event_types = "<CLICKS/>",
+#'   1, exclude_deleted = TRUE, optional_columns = TRUE
+#' )
 #' }
-
-
+#'
 get_all_contacts <- function(pod_number, session_access_token, start_date,
                              end_date, date_type = "EVENT",
                              event_types = "<ALL_EVENT_TYPES/>",
@@ -84,55 +87,68 @@ get_all_contacts <- function(pod_number, session_access_token, start_date,
   end_date2 <- as.character(format(as.Date(end_date), "%m/%d/%Y"))
 
   # Build the XML request
-  xml_parameters <- paste0("
+  xml_parameters <- paste0(
+    "
     <Envelope>
       <Body>
         <RawRecipientDataExport>",
-          ifelse(date_type == "EVENT", paste0(
-              "<EVENT_DATE_START>", start_date2, "</EVENT_DATE_START>",
-              "<EVENT_DATE_END>", end_date2, "</EVENT_DATE_END>"
-            ), paste0(
-              "<SEND_DATE_START>", start_date2, "</SEND_DATE_START>",
-              "<SEND_DATE_END>", end_date2, "</SEND_DATE_END>"
-            )
-          ),
-          "<EXPORT_FORMAT>", export_format, "</EXPORT_FORMAT>",
-          ifelse(move_to_ftp == FALSE, "", "<MOVE_TO_FTP/>"),
-          ifelse(file_name_prefix != "", paste0("<EXPORT_FILE_NAME>",
-                                                file_name_prefix,
-                                                "</EXPORT_FILE_NAME>"), ""),
-          ifelse(confirm_email != "", paste0("<EMAIL>", confirm_email,
-                                             "</EMAIL>"), ""),
-          event_types,
-          ifelse(exclude_deleted == TRUE, "<EXCLUDE_DELETED/>", ""),
-          ifelse(optional_columns == TRUE,
-            "<RETURN_MAILING_NAME/>
+    ifelse(date_type == "EVENT", paste0(
+      "<EVENT_DATE_START>", start_date2, "</EVENT_DATE_START>",
+      "<EVENT_DATE_END>", end_date2, "</EVENT_DATE_END>"
+    ), paste0(
+      "<SEND_DATE_START>", start_date2, "</SEND_DATE_START>",
+      "<SEND_DATE_END>", end_date2, "</SEND_DATE_END>"
+    )),
+    "<EXPORT_FORMAT>", export_format, "</EXPORT_FORMAT>",
+    ifelse(move_to_ftp == FALSE, "", "<MOVE_TO_FTP/>"),
+    ifelse(file_name_prefix != "", paste0(
+      "<EXPORT_FILE_NAME>",
+      file_name_prefix,
+      "</EXPORT_FILE_NAME>"
+    ), ""),
+    ifelse(confirm_email != "", paste0(
+      "<EMAIL>", confirm_email,
+      "</EMAIL>"
+    ), ""),
+    event_types,
+    ifelse(exclude_deleted == TRUE, "<EXCLUDE_DELETED/>", ""),
+    ifelse(optional_columns == TRUE,
+      "<RETURN_MAILING_NAME/>
             <RETURN_SUBJECT/>
             <RETURN_FROM_ADDRESS/>
             <RETURN_FROM_NAME/>
             <RETURN_CRM_CAMPAIGN_ID/>
-            <RETURN_PROGRAM_ID/>", ""),
-        "</RawRecipientDataExport>
+            <RETURN_PROGRAM_ID/>", ""
+    ),
+    "</RawRecipientDataExport>
       </Body>
     </Envelope>
-    ")
+    "
+  )
 
   # Submit the request
   request <- httr::RETRY("POST",
-                        url = paste0("https://api-campaign-us-", pod_number,
-                                     ".goacoustic.com/XMLAPI"),
-                        httr::add_headers("Content-Type" =
-                                            "text/xml;charset=utf-8",
-                                          "Authorization" =
-                                            paste0("Bearer ",
-                                                   session_access_token)),
-                        body = xml_parameters,
-                        encode = "json",
-                        times = 4,
-                        pause_min = 10,
-                        terminate_on = NULL,
-                        terminate_on_success = TRUE,
-                        pause_cap = 5)
+    url = paste0(
+      "https://api-campaign-us-", pod_number,
+      ".goacoustic.com/XMLAPI"
+    ),
+    httr::add_headers(
+      "Content-Type" =
+        "text/xml;charset=utf-8",
+      "Authorization" =
+        paste0(
+          "Bearer ",
+          session_access_token
+        )
+    ),
+    body = xml_parameters,
+    encode = "json",
+    times = 4,
+    pause_min = 10,
+    terminate_on = NULL,
+    terminate_on_success = TRUE,
+    pause_cap = 5
+  )
 
   check_request_status(request)
   check_for_faulty_xml(request)
@@ -140,5 +156,4 @@ get_all_contacts <- function(pod_number, session_access_token, start_date,
   # Get and return the Job Id
   job_id <- get_job_id(request, path = "//Envelope/Body/RESULT/MAILING/JOB_ID")
   return(job_id)
-
 }

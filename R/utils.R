@@ -49,12 +49,16 @@ get_job_id <- function(request_obj, path) {
 
 check_request_status <- function(request_obj) {
   if (request_obj$status_code == 401) {
-    message(paste0("There was a 401 error.",
-                   "Do you need to refresh your access token?"))
+    message(paste0(
+      "There was a 401 error.",
+      "Do you need to refresh your access token?"
+    ))
     stop_quietly()
   } else if (request_obj$status_code != 200) {
-    message(paste0("There was an authentication error: ",
-                   request_obj$status_code))
+    message(paste0(
+      "There was an authentication error: ",
+      request_obj$status_code
+    ))
     stop_quietly()
   }
 }
@@ -88,7 +92,8 @@ stop_quietly <- function() {
 
 check_for_faulty_xml <- function(request_obj) {
   if (length(grep("<FaultString>", httr::content(request_obj, "text",
-                                            encoding = "ISO-8859-1"))) >= 1) {
+    encoding = "ISO-8859-1"
+  ))) >= 1) {
     message("Faulty XML request. Check your parameters. Full result text:")
     message(httr::content(request_obj, "text", encoding = "ISO-8859-1"))
     stop_quietly()

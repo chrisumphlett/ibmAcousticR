@@ -37,34 +37,42 @@
 #'
 #' @examples
 #' \dontrun{
-#' access_token <- acoustic_auth(org_client_id = "abc",
-#' org_client_secret = "xyz",
-#' my_refresh_token = "123")
+#' access_token <- acoustic_auth(
+#'   org_client_id = "abc",
+#'   org_client_secret = "xyz",
+#'   my_refresh_token = "123"
+#' )
 #' }
-
-
+#'
 acoustic_auth <- function(org_client_id, org_client_secret, my_refresh_token,
                           pod_number) {
 
   # Store the credentials in a list
-  body_parameters <- list(grant_type = "refresh_token",
-             client_id = org_client_id,
-             client_secret = org_client_secret,
-             refresh_token = my_refresh_token)
+  body_parameters <- list(
+    grant_type = "refresh_token",
+    client_id = org_client_id,
+    client_secret = org_client_secret,
+    refresh_token = my_refresh_token
+  )
 
   # Submit the request
   request <- httr::RETRY("POST",
-                        url = paste0("https://api-campaign-us-", pod_number,
-                                     ".goacoustic.com/oauth/token"),
-                        httr::add_headers("Content-Type" =
-                                          "application/x-www-form-urlencoded"),
-                        body = body_parameters,
-                        encode = "form",
-                        times = 4,
-                        pause_min = 10,
-                        terminate_on = NULL,
-                        terminate_on_success = TRUE,
-                        pause_cap = 5)
+    url = paste0(
+      "https://api-campaign-us-", pod_number,
+      ".goacoustic.com/oauth/token"
+    ),
+    httr::add_headers(
+      "Content-Type" =
+        "application/x-www-form-urlencoded"
+    ),
+    body = body_parameters,
+    encode = "form",
+    times = 4,
+    pause_min = 10,
+    terminate_on = NULL,
+    terminate_on_success = TRUE,
+    pause_cap = 5
+  )
 
   check_request_status(request)
   check_for_faulty_xml(request)
