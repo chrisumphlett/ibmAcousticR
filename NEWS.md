@@ -1,3 +1,7 @@
+# ibmAcousticR 0.2.1.9000
+
+* `styler` used to clean up formatting.
+
 # ibmAcousticR 0.2.1
 * Added a RETRY() to safely retry an API request certain number of times before returning a error code. 
 * Made minor edits to the DESCRIPTION file by adding a contributor.
