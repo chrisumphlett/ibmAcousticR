@@ -1,6 +1,8 @@
 # ibmAcousticR
 Connect to Your 'IBM Acoustic' Data!
 
+_This package has been archived on CRAN, and this repo archived, because I no longer had access to Acoustic and could not maintain it._
+
 ## Purpose
 
 ibmAcousticR facilitates making a connection to the IBM Acoustic email campaign management API and executing various queries. The IBM Acoustic API documentation is available at <https://developer.ibm.com/customer-engagement/docs/>.
